@@ -10,19 +10,58 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <th>#</th>
+                    <!-- Order By: Nama -->
                     <th>Nama 
-                        <form  method="post" action="/sort-name">
+                        <form  method="post" action="/sort">
                             <input type="hidden" name="order" value="descending">
+                            <input type="hidden" name="order_name" value="name">
                             <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-down"></i></div></button>
                         </form>
-                        <form  method="post" action="/sort-name">
+                        <form  method="post" action="/sort">
                             <input type="hidden" name="order" value="ascending">
+                            <input type="hidden" name="order_name" value="name">
                             <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-up"></i></div></button>
                         </form>
                     </th>
-                    <th>Tanggal <div style="display: inline;" id="sort-btn"><i class="bi bi-arrow-down-up"></i></div></th>
-                    <th>Keparahan <div style="display: inline;"><i class="bi bi-arrow-down-up"></i></div></th>
-                    <th>Status <div style="display: inline;"><i class="bi bi-arrow-down-up"></i></div></th>
+                    <!-- Order By: Tanggal -->
+                    <th>Tanggal 
+                        <form  method="post" action="/sort">
+                            <input type="hidden" name="order" value="descending">
+                            <input type="hidden" name="order_name" value="tanggal">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-down"></i></div></button>
+                        </form>
+                        <form  method="post" action="/sort">
+                            <input type="hidden" name="order" value="ascending">
+                            <input type="hidden" name="order_name" value="tanggal">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-up"></i></div></button>
+                        </form>
+                    </th>
+                    <!-- Order By: Keparahan -->
+                    <th>Keparahan 
+                        <form  method="post" action="/sort">
+                            <input type="hidden" name="order" value="descending">
+                            <input type="hidden" name="order_name" value="keparahan">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-down"></i></div></button>
+                        </form>
+                        <form  method="post" action="/sort">
+                            <input type="hidden" name="order" value="ascending">
+                            <input type="hidden" name="order_name" value="keparahan">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-up"></i></div></button>
+                        </form>
+                    </th>
+                    <!-- Order By: Status -->
+                    <th>Status 
+                        <form  method="post" action="/sort">
+                            <input type="hidden" name="order" value="descending">
+                            <input type="hidden" name="order_name" value="status">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-down"></i></div></button>
+                        </form>
+                        <form  method="post" action="/sort">
+                            <input type="hidden" name="order" value="ascending">
+                            <input type="hidden" name="order_name" value="status">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-up"></i></div></button>
+                        </form>
+                    </th>
                     <th>Aksi</th>
                 </thead>
                 <tbody>
