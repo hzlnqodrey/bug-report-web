@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title"><%= BugReportDataDetail.name %> <span style="font-size: 0.8rem; color: rgba(41, 36, 36, 0.500);"> #<%= BugReportDataDetail.ID_DocumentReport.toUpperCase() %> </span></h5>
+                        <h6 class="mt-1"><button type="button" class="btn btn-outline-success badge rounded-pill bg-success"><i class="bi bi-check-circle"></i> Opened</button></h6>
+                    </div>
+                  <h6 class="card-subtitle mb-2 text-muted"><span style="font-size: 1rem; color: rgba(41, 36, 36, 0.500);"><%= BugReportDataDetail.email %> </span></h6>
+                  <p class="card-text" style="font-size: 1.6rem;"><%= BugReportDataDetail.message %></p>
+                  <p class="card-text"><small class="text-muted"><%= BugReportDataDetail.createdAt %></small></p>
+                  <a href="/" class="card-link">&laquo; Kembali ke Daftar Bug Reports</a>
+                  <br><br>
+
+                  <!-- FORM LIAT EXPRESS JS Contact App Bag 2 -->
+                  <form method="post" action="/contact">
+                    <div class="d-flex justify-content-center">
+                        <div class="spasi">
+                            <button type="button" id="assigned" class="btn btn-outline-warning rounded-pill"><i class="bi bi-hourglass-split"></i> Assigned</button>
+                            <button type="button" id="closed" class="btn btn-outline-danger rounded-pill"><i class="bi bi-x-circle"></i> Closed</button>
+                        </div>
+                    </div>
+                    
+                  </form>
+                </div>
+              </div>
+              </div>
+        </div>
+    </div>
+</div>
+
