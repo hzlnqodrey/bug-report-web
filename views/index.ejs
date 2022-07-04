@@ -10,10 +10,19 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <th>#</th>
-                    <th>Nama</th>
-                    <th>Tanggal <div style="display: inline;" id="sort-btn" onclick="tanggal_ClickArrow()"><i class="bi bi-arrow-down-up"></i></div></th>
-                    <th>Keparahan</th>
-                    <th>Status <div style="display: inline;" onclick="status_ClickArrow()"><i class="bi bi-arrow-down-up"></i></div></th>
+                    <th>Nama 
+                        <form  method="post" action="/sort-name">
+                            <input type="hidden" name="order" value="descending">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-down"></i></div></button>
+                        </form>
+                        <form  method="post" action="/sort-name">
+                            <input type="hidden" name="order" value="ascending">
+                            <button type="submit"><div style="display: inline;"><i class="bi bi-arrow-up"></i></div></button>
+                        </form>
+                    </th>
+                    <th>Tanggal <div style="display: inline;" id="sort-btn"><i class="bi bi-arrow-down-up"></i></div></th>
+                    <th>Keparahan <div style="display: inline;"><i class="bi bi-arrow-down-up"></i></div></th>
+                    <th>Status <div style="display: inline;"><i class="bi bi-arrow-down-up"></i></div></th>
                     <th>Aksi</th>
                 </thead>
                 <tbody>
@@ -43,13 +52,3 @@
         </div>
     </div>
 </div>
-
-<br><br><br><br>
-<p>Contoh Status Assigned dan Closed</p>
-<button type="button" class="btn btn-outline-warning badge rounded-pill bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Assigned</button>
-
-<button type="button" class="btn btn-outline-danger badge rounded-pill bg-danger"><i class="bi bi-x-circle"></i> Closed</button>
-
-<script>
-    // Code Sorting By Date
-</script>

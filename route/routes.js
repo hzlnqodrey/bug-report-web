@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 // Import Function
-const { getBugReport, getIDBugReport, editStatusBug } = require('../utils/bug-report');
+const { getBugReport, getIDBugReport, editStatusBug } = require('../utils/bug-report')
+// db initialiaze
+const db = require('../utils/firebase-config')
 
 // [1] GET ALL LIST OF BUG REPORTS
 router.get('/', async (req, res) => {
@@ -10,6 +12,7 @@ router.get('/', async (req, res) => {
     const BugReportData = users.data.getDataFromFirestore
 
     // res render will rendering .ejs in the views folder
+    res.header("Refresh", "10")
     res.render('index', { 
         // View Setting
         layout: 'layouts/main-layout',
@@ -22,10 +25,36 @@ router.get('/', async (req, res) => {
 
 // [2] Proses ubah status bug
 router.post('/', (req, res) => {
-    console.log(req.body)
     editStatusBug(req.body.id, req.body.statusBug)
     res.redirect('/')
 })
+
+// [4] Proses Sorting
+// [4.1] Proses Sorting Nama
+router.post('/sort-name', (req, res) => {
+    
+    let orderBy = req.body.order === 'descending' ? "asc" : "desc" 
+
+    let BugReportData = []
+        db.collection("bugreports")
+        .orderBy("name", orderBy).get()
+        .then(snapshot => {
+            snapshot.forEach((hasil) => {
+                BugReportData.push(hasil.data())
+            })
+            res.render('index', { 
+                // View Setting
+                layout: 'layouts/main-layout',
+        
+                // Data Sending
+                title: 'Bug Reports Page - Sorted Name',
+                BugReportData
+            }) 
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}) 
 
 // [3] GET THE DETAILED ID OF BUG REPORTS
 router.get('/id/:id', async (req, res) => {

@@ -1,16 +1,9 @@
 const fetch = require('cross-fetch')
 const { api_url } = require('./auth/auth-key')
+// db initialiaze
+const db = require('./firebase-config')
 
-// Firebase - Firestore setting 
-var admin = require("firebase-admin");
 
-var serviceAccount = require("../utils/auth/serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-const db = admin.firestore()
 // -----------------------------
 
 // List Semua Daftar Bug Reports with FETCH API
