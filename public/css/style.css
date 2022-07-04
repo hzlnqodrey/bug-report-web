@@ -1,3 +1,14 @@
+@import "section/footer.css";
+
+body {
+    min-height: 100vh;
+}
+
+/* add space in the bottom of table */
+.container, .in-index {
+    padding-bottom: 50px;
+}
+
 button#assigned {
     border: 1.5px solid rgba(255, 208, 40);
     background-color: rgba(255, 208, 40, 0.1);
@@ -36,3 +47,4 @@ button, input[type="submit"], input[type="reset"] {
 	cursor: pointer;
 	outline: inherit;
 }
+
