@@ -1,7 +1,19 @@
 const fetch = require('cross-fetch')
 const { api_url } = require('./auth/auth-key')
 
-// List Semua Daftar Bug Reports
+// Firebase - Firestore setting 
+var admin = require("firebase-admin");
+
+var serviceAccount = require("../utils/auth/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore()
+// -----------------------------
+
+// List Semua Daftar Bug Reports with FETCH API
 const getBugReport = async () => {
     try {
         const response = await fetch(api_url, {
@@ -36,4 +48,19 @@ const getIDBugReport = async (id) => {
     }
 }
 
-module.exports = { getBugReport, getIDBugReport }
+// Edit/Ubah Status Bug dengan method PUT [UDAH BEKERJA DENGAN BAIK / WORKING PROPERLY] with FIRESTORE DATABASE
+const editStatusBug = async (id, statusBug) => {
+
+    const users = await getBugReport()
+    
+    for (let i = 0; i < users.data.getDataFromFirestore.length; i++) {
+        if (users.data.getDataFromFirestore[i].ID_DocumentReport === id) {
+            // Change/Edit the status bug here
+            users.data.getDataFromFirestore[i].statusBug = statusBug
+            let foundID = users.data.getDataFromFirestore[i]
+            db.collection("bugreports").doc(id).set(foundID)
+        }
+    }
+}
+
+module.exports = { getBugReport, getIDBugReport, editStatusBug }

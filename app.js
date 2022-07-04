@@ -4,9 +4,10 @@ const PORT = 3000;
 
 
 // Import
-const { getBugReport, getIDBugReport } = require('./utils/bug-report');
+const { getBugReport, getIDBugReport, editStatusBug } = require('./utils/bug-report');
 
 
+// MIDDLEWARE
 // allow express use ejs
 app.set('view engine', 'ejs')
     // ejs layouts formatting
@@ -14,8 +15,12 @@ app.set('view engine', 'ejs')
     app.use(expressLayouts)
 
 // allow static files to public
-app.use(express.static('public'))
+app.use(express.static('public')) // built-in middleware
 
+// to parsing body.json
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
 
 // =======================================================================================================================
 // Routing
@@ -37,9 +42,15 @@ app.get('/', async (req, res) => {
     })
 })
 
+// proses ubah status bug
+app.post('/', (req, res) => {
+    console.log(req.body);
+    editStatusBug(req.body.id, req.body.statusBug)
+    res.redirect('/')
+})
 
 // GET THE DETAILED ID OF BUG REPORTS
-app.get('/detail/:id', async (req, res) => {
+app.get('/id/:id', async (req, res) => {
 
     // Find the match ID
     const BugReportDataDetail = await getIDBugReport(req.params.id)
@@ -56,21 +67,8 @@ app.get('/detail/:id', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// to route request when path is random and unpathable
-app.get('/', (req, res) => {
+// to route request when path is random and unpathable [Use app.use, not app.get]
+app.use('/', (req, res) => {
     res.status(404)
     res.send('<h1>404: Page not found</h1>')
 })

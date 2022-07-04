@@ -12,6 +12,7 @@
                     <th>#</th>
                     <th>Nama</th>
                     <th>Tanggal <div style="display: inline;" id="sort-btn" onclick="tanggal_ClickArrow()"><i class="bi bi-arrow-down-up"></i></div></th>
+                    <th>Keparahan</th>
                     <th>Status <div style="display: inline;" onclick="status_ClickArrow()"><i class="bi bi-arrow-down-up"></i></div></th>
                     <th>Aksi</th>
                 </thead>
@@ -21,9 +22,19 @@
                             <td><%= i+1 %> </td>
                             <td><%= BugReportData[i].name %> </td>
                             <td><%= BugReportData[i].createdAt %> </td>
-                            <td><button type="button" class="btn btn-outline-success badge rounded-pill bg-success"><i class="bi bi-check-circle"></i> Opened</button></td>
+                            <td><%= BugReportData[i].severity %> </td>
+                            <!-- Logic Frontend statusBug -->
+                            <% if (BugReportData[i].statusBug === "Opened") { %>
+                                <td><button type="button" class="btn btn-outline-success badge rounded-pill bg-success"><i class="bi bi-check-circle"></i> Opened</button></td>
+                            <% } else if (BugReportData[i].statusBug === "Assigned") {  %>
+                                <td><button type="button" class="btn btn-outline-warning badge rounded-pill bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Assigned</button></td>
+                            <% } else if (BugReportData[i].statusBug === "Closed") {  %>
+                                <td><button type="button" class="btn btn-outline-danger badge rounded-pill bg-danger"><i class="bi bi-x-circle"></i> Closed</button></td>
+                            <% } else { %>
+                                <td>-</td>
+                            <% }%>
                             <td>
-                                <a href="/detail/<%= BugReportData[i].ID_DocumentReport %>"><button type="button" class="btn btn-outline-primary badge rounded-pill bg-primary"><i class="bi bi-files"></i> Detail</button></a>
+                                <a href="/id/<%= BugReportData[i].ID_DocumentReport %>"><button type="button" class="btn btn-outline-primary badge rounded-pill bg-primary"><i class="bi bi-files"></i> Detail</button></a>
                             </td>
                         </tr>
                     <% } %>

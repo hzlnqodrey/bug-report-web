@@ -5,7 +5,14 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <h5 class="card-title"><%= BugReportDataDetail.name %> <span style="font-size: 0.8rem; color: rgba(41, 36, 36, 0.500);"> #<%= BugReportDataDetail.ID_DocumentReport.toUpperCase() %> </span></h5>
-                        <h6 class="mt-1"><button type="button" class="btn btn-outline-success badge rounded-pill bg-success"><i class="bi bi-check-circle"></i> Opened</button></h6>
+                        <!-- Logic Frontend statusBug -->
+                        <% if (BugReportDataDetail.statusBug === "Opened") { %>
+                            <h6 class="mt-1"><button type="button" class="btn btn-outline-success badge rounded-pill bg-success"><i class="bi bi-check-circle"></i> Opened</button></h6>
+                        <% } else if (BugReportDataDetail.statusBug === "Assigned") {  %>
+                            <h6 class="mt-1"><button type="button" class="btn btn-outline-warning badge rounded-pill bg-warning text-dark"><i class="bi bi-hourglass-split"></i> Assigned</button></h6>
+                        <% } else if (BugReportDataDetail.statusBug === "Closed") {  %>
+                            <h6 class="mt-1"><button type="button" class="btn btn-outline-danger badge rounded-pill bg-danger"><i class="bi bi-x-circle"></i> Closed</button></h6>
+                        <% } %>
                     </div>
                   <h6 class="card-subtitle mb-2 text-muted"><span style="font-size: 1rem; color: rgba(41, 36, 36, 0.500);"><%= BugReportDataDetail.email %> </span></h6>
                   <p class="card-text" style="font-size: 1.6rem;"><%= BugReportDataDetail.message %></p>
@@ -13,20 +20,34 @@
                   <a href="/" class="card-link">&laquo; Kembali ke Daftar Bug Reports</a>
                   <br><br>
 
-                  <!-- FORM LIAT EXPRESS JS Contact App Bag 2 -->
-                  <form method="post" action="/contact">
                     <div class="d-flex justify-content-center">
                         <div class="spasi">
-                            <button type="button" id="assigned" class="btn btn-outline-warning rounded-pill"><i class="bi bi-hourglass-split"></i> Assigned</button>
-                            <button type="button" id="closed" class="btn btn-outline-danger rounded-pill"><i class="bi bi-x-circle"></i> Closed</button>
+                            <!-- LOGIC FRONTEND HOW TO EDIT/CHANGE STATUS BUG -->
+                            <% if (BugReportDataDetail.statusBug === "Opened") { %>
+                                <form action="/" method="post">
+                                    <input type="hidden" name="id" value="<%= BugReportDataDetail.ID_DocumentReport %>">
+                                    <input type="hidden" name="statusBug" value="Assigned">
+                                    <button type="submit" id="assigned" class="btn btn-outline-warning rounded-pill"><i class="bi bi-hourglass-split"></i> Assigned</button>
+                                </form>
+                                <form action="/" method="post">
+                                    <input type="hidden" name="id" value="<%= BugReportDataDetail.ID_DocumentReport %>">
+                                    <input type="hidden" name="statusBug" value="Closed">
+                                    <button type="submit" id="closed" class="btn btn-outline-danger rounded-pill"><i class="bi bi-x-circle"></i> Closed</button>
+                                </form>
+                            <% } else if (BugReportDataDetail.statusBug === "Assigned") {  %>
+                                <form action="/" method="post">
+                                    <input type="hidden" name="id" value="<%= BugReportDataDetail.ID_DocumentReport %>">
+                                    <input type="hidden" name="statusBug" value="Closed">
+                                    <button type="submit" id="closed" class="btn btn-outline-danger rounded-pill"><i class="bi bi-x-circle"></i> Closed</button>
+                                </form>
+                            <% } else if (BugReportDataDetail.statusBug === "Closed") {  %>
+                                <h3>Case Closed, Bug telah diselesaikan dengan baik oleh team developer</h3>
+                            <% } %>
                         </div>
                     </div>
-                    
-                  </form>
                 </div>
               </div>
               </div>
         </div>
     </div>
 </div>
-
