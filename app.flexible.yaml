@@ -1,0 +1,7 @@
+runtime: nodejs14
+env: flex
+
+service: bugreports-web
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: "/utils/auth/serviceAccountKey.json"
