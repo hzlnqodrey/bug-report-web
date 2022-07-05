@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
   const BugReportData = users.data.getDataFromFirestore;
 
   // res render will rendering .ejs in the views folder
-  res.header("Refresh", "10");
+  res.header("Refresh", "30");
   res.render("index", {
     // View Setting
     layout: "layouts/main-layout",
