@@ -9,6 +9,10 @@ body {
     padding-bottom: 50px;
 }
 
+.in-detail {
+    padding-bottom: 310px;
+}
+
 button#assigned {
     border: 1.5px solid rgba(255, 208, 40);
     background-color: rgba(255, 208, 40, 0.1);

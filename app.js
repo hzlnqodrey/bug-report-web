@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = 3000;
+const PORT = 8080
 const myRouter = require('./route/routes')
 
 // [*]  MIDDLEWARE [just put middleware on app.js]

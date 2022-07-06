@@ -2,23 +2,21 @@
   "name": "bug-reports-web",
   "version": "1.0.0",
   "description": "Bug reports web, fetch api from firestore data",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "jest",
-    "start": "nodemon app.js"
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "16"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cross-fetch": "^3.1.5",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-ejs-layouts": "^2.5.1",
     "firebase-admin": "^11.0.0"
-  },
-  "devDependencies": {
-    "jest": "^28.1.2",
-    "supertest": "^6.2.4"
   }
 }
