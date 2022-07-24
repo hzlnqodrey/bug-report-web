@@ -3,9 +3,6 @@ const { api_url } = require('./auth/auth-key')
 // db initialiaze
 const db = require('./firebase-config')
 
-
-// -----------------------------
-
 // List Semua Daftar Bug Reports with FETCH API
 const getBugReport = async () => {
     try {
